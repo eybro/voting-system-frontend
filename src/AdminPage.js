@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
-const socket = io("http://localhost:3000");
+const socket = io("https://dolphin-app-day8d.ondigitalocean.app/");
 
 function AdminPage() {
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ function AdminPage() {
   }, []);
 
   const login = async () => {
-    const res = await fetch("http://localhost:3000/admin/login", {
+    const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),
@@ -38,14 +38,14 @@ function AdminPage() {
   };
 
   const fetchCandidates = async () => {
-    const res = await fetch("http://localhost:3000/candidates");
+    const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/candidates");
     const data = await res.json();
     setCandidates(data);
   };
 
   const addCandidate = async () => {
     if (!candidateName) return alert("Enter a name!");
-    await fetch("http://localhost:3000/admin/add-candidate", {
+    await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/add-candidate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: candidateName, password }),
@@ -55,7 +55,7 @@ function AdminPage() {
   };
 
   const removeCandidate = async (name) => {
-    await fetch("http://localhost:3000/admin/remove-candidate", {
+    await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/remove-candidate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, password }),
@@ -65,7 +65,7 @@ function AdminPage() {
 
   const fetchResults = async () => {
     try {
-      const res = await fetch("http://localhost:3000/admin/results");
+      const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/results");
       if (!res.ok) throw new Error("Failed to fetch results");
       const data = await res.json();
       setResults(data);
@@ -76,7 +76,7 @@ function AdminPage() {
   };
 
   const resetVotes = async () => {
-    await fetch("http://localhost:3000/admin/reset-votes", {
+    await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/reset-votes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),

@@ -8,13 +8,13 @@ function VotingPage() {
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/candidates")
+    fetch("https://dolphin-app-day8d.ondigitalocean.app/candidates")
       .then((res) => res.json())
       .then((data) => setCandidates(data));
   }, []);
 
   const checkEmail = async () => {
-    const res = await fetch("http://localhost:3000/validate", {
+    const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -29,7 +29,7 @@ function VotingPage() {
   const submitVote = async () => {
     if (!selectedCandidate) return alert("Please select a candidate!");
 
-    const res = await fetch("http://localhost:3000/vote", {
+    const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/vote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, candidate: selectedCandidate }),

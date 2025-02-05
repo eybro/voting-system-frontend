@@ -4,7 +4,7 @@ function AdminLogin({ onLogin }) {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    const res = await fetch("http://localhost:3000/admin/login", {
+    const res = await fetch("https://dolphin-app-day8d.ondigitalocean.app/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),
